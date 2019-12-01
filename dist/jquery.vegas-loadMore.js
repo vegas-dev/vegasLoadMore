@@ -4,36 +4,40 @@
 
 (function( $ ) {
 	"use strict";
-
+	
 	$.fn.vegasLoadMore = function(options) {
-
+		
 		options = $.extend({
-			route: null,
-			limit: 50,
-			offset: 50,
-			target: null,
-			params: {}
+			onClick: function() {},
+			onLoad: function() {},
 		}, arguments[0] || {});
-
+		
 		var $self = this;
-		var offset = options.offset;
-
+		var first_offset = options.offset || parseInt($self.attr('data-offset')) || 50;
+		
+		// Options
+		var offset = options.offset || parseInt($self.attr('data-offset')) || 50,
+			limit = options.limit || parseInt($self.attr('data-limit'))|| 50,
+			route = options.route || $self.attr('data-route') || null,
+			params = options.params || null;
+		
 		$self.on('click', function () {
-			if(options.route === null || options.target === null) return alert('Main parameters for loading are not specified');
-
-			var params = options.params;
-			params.limit = options.limit;
+			if(route === null) return alert('Main parameters for loading are not specified');
+			
+			params.limit = limit;
 			params.offset = offset;
-
-			$.post(options.route, params, function (data) {
-				offset = offset + options.offset;
-
-				$(options.target).append(data.view); // Here is the generated view that is transferred from the server.
+			
+			options.onClick.call(this, $self);
+			
+			$.post(route, params, function (data) {
+				offset = first_offset + offset;
+				
+				options.onLoad.call(this, $self, data);
 			});
-
+			
 			return false;
 		});
-
+		
 		return $self;
 	};
 })(jQuery);
