@@ -1,0 +1,23 @@
+{
+  "name": "vgloadmore",
+  "version": "1.0.2",
+  "author": {
+    "name": "Vegas Studio",
+    "url": "https://vegas-dev.com",
+    "email": "vegas.dev.studio@gmail.com"
+  },
+  "keywords": [
+    "load more",
+    "without reload",
+    "load content",
+    "jquery"
+  ],
+  "bugs": {
+    "url": "https://github.com/vegas-dev/vegasLoadMore/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vegas-dev/vegasLoadMore"
+  }
+}

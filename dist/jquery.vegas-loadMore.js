@@ -1,5 +1,5 @@
 /**
- * Created by Vegas s on 01.12.2018.
+ * Created by Vegas Studio
  */
 
 (function( $ ) {
