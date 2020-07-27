@@ -24,15 +24,20 @@
 		$self.on('click', function () {
 			if(route === null) return alert('Main parameters for loading are not specified');
 			
-			params.limit = limit;
-			params.offset = offset;
+			var btnText = $self.text();
+			
+			params = {
+				limit: limit,
+				offset: offset
+			};
 			
 			options.onClick.call(this, $self);
 			
-			$.post(route, params, function (data) {
+			$.get(route, params, function (data) {
 				offset = first_offset + offset;
 				
 				options.onLoad.call(this, $self, data);
+				$self.text(btnText);
 			});
 			
 			return false;
