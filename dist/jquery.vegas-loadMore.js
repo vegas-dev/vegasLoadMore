@@ -6,7 +6,6 @@
 	"use strict";
 	
 	$.fn.vegasLoadMore = function(options) {
-		
 		options = $.extend({
 			onClick: function() {},
 			onLoad: function() {},
